@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _Scripts.Snake
+namespace _Scripts.Snake.MoveLogic
 {
     public class Run : BaseSnakeMove
     {

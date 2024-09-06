@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace _Scripts.Snake
+namespace _Scripts.Snake.MoveLogic
 {
     public class InputReader : IInitializable, ITickable, IDisposable
     {
