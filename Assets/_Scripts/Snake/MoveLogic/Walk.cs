@@ -1,12 +1,10 @@
-﻿using UnityEngine;
-
-namespace _Scripts.Snake.MoveLogic
+﻿namespace _Scripts.Snake.MoveLogic
 {
     public class Walk : BaseSnakeMove
     {
         private const float MOVE_SPEED = 40f;
-        
-        public Walk(Transform playerTransform) : base(playerTransform)
+
+        public Walk(SnakeConfig context) : base(context)
         {
             MoveSpeed = MOVE_SPEED;
         }

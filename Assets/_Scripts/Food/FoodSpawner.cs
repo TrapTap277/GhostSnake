@@ -18,7 +18,7 @@ namespace _Scripts.Food
 
         private readonly GridGetPosition _gridGetPosition;
 
-        public FoodSpawner(GameObject food, Tilemap tileMap)
+        public FoodSpawner([Inject(Id = "Food")]GameObject food, Tilemap tileMap)
         {
             _food = food;
             _tileMap = tileMap;
@@ -42,11 +42,7 @@ namespace _Scripts.Food
 
         private void SpawnFood()
         {
-            Debug.LogWarning("1");
-
             var availablePositions = GetAvailablePositions();
-
-            Debug.LogError("spawn");
 
             for (var i = 0; i < _numberOfObjectsToSpawn; i++)
             {
@@ -56,20 +52,13 @@ namespace _Scripts.Food
                     break;
                 }
 
-                Debug.LogError("spawn2");
-
-
                 var randomIndex = Random.Range(0, availablePositions.Count);
-                Debug.LogError("spawn3");
 
                 var spawnPosition = availablePositions[randomIndex];
-                Debug.LogError("spawn4");
 
                 Object.Instantiate(_food, _tileMap.GetCellCenterWorld(spawnPosition), Quaternion.identity);
-                Debug.LogError("spawn5");
 
                 availablePositions.RemoveAt(randomIndex);
-                Debug.LogError("spawn6");
             }
         }
 

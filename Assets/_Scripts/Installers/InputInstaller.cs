@@ -1,4 +1,5 @@
-﻿using _Scripts.Snake.MoveLogic;
+﻿using _Scripts.Snake;
+using _Scripts.Snake.MoveLogic;
 using UnityEngine;
 using Zenject;
 
@@ -6,26 +7,26 @@ namespace _Scripts.Installers
 {
     public class InputInstaller : MonoInstaller
     {
-        [SerializeField] private PlayerConfig playerConfig;
+        [SerializeField] private SnakeConfig snakeConfig;
 
         public override void InstallBindings()
         {
-            playerConfig.InitMoveBehaviours();
+            snakeConfig.InitMoveBehaviours(); 
 
             Container.Bind<IMove>()
-                .WithId(PlayerConfig.SHIFTING_ID)
+                .WithId(SnakeConfig.SHIFTING_ID)
                 .To<Shifting>()
-                .FromInstance(playerConfig.Shifting)
+                .FromInstance(snakeConfig.Shifting)
                 .AsSingle();
             Container.Bind<IMove>()
-                .WithId(PlayerConfig.MOVE_ID)
+                .WithId(SnakeConfig.MOVE_ID)
                 .To<Walk>()
-                .FromInstance(playerConfig.Walk)
+                .FromInstance(snakeConfig.Walk)
                 .AsSingle();
             Container.Bind<IMove>()
-                .WithId(PlayerConfig.RUN_ID)
+                .WithId(SnakeConfig.RUN_ID)
                 .To<Run>()
-                .FromInstance(playerConfig.Run)
+                .FromInstance(snakeConfig.Run)
                 .AsSingle();
 
             Container.BindInterfacesTo<InputReader>().AsSingle();

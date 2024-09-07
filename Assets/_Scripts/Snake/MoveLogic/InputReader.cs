@@ -100,6 +100,13 @@ namespace _Scripts.Snake.MoveLogic
             _playerInput.Main.Shifting.canceled += context => SetShifting(false);
             _playerInput.Main.Run.performed += context => SetRun(true);
             _playerInput.Main.Run.canceled += context => SetRun(false);
+            
+            StartStartMoving();
+        }
+
+        private void StartStartMoving()
+        {
+            ChangeIsMoving(true, Vector2.up);
         }
 
         public void Dispose()

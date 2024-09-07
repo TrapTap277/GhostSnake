@@ -10,7 +10,7 @@ namespace _Scripts.Installers
 
         public override void InstallBindings()
         {
-            Container.BindInstance(foodPrefab).AsSingle();
+            Container.Bind<GameObject>().WithId("Food").FromInstance(foodPrefab).AsCached();
             Container.BindInterfacesTo<FoodSpawner>().AsSingle();
         }
     }

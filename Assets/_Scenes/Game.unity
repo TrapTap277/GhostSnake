@@ -351,6 +351,7 @@ Transform:
   m_Children:
   - {fileID: 753748092}
   - {fileID: 1605268245}
+  - {fileID: 1488393753}
   m_Father: {fileID: 71749363}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
@@ -658,6 +659,7 @@ Transform:
   - {fileID: 764202688}
   - {fileID: 147600097}
   - {fileID: 1398850449}
+  - {fileID: 1181446053}
   m_Father: {fileID: 517258061}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &753748093
@@ -678,6 +680,7 @@ MonoBehaviour:
   - {fileID: 764202689}
   - {fileID: 147600098}
   - {fileID: 1398850450}
+  - {fileID: 1181446054}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -784,7 +787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874c71862720454fbdf23f337fb7d709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerConfig: {fileID: 995131219}
+  snakeConfig: {fileID: 995131219}
 --- !u!1 &928744744
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,8 +884,8 @@ GameObject:
   - component: {fileID: 995131217}
   - component: {fileID: 995131219}
   - component: {fileID: 995131221}
-  - component: {fileID: 995131220}
   - component: {fileID: 995131222}
+  - component: {fileID: 995131224}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Untagged
@@ -969,41 +972,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df531b9acf32460f8e87ed8f25454d39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!70 &995131220
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 995131216}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.6, y: 0}
-  m_Size: {x: 18.25, y: 31.25}
-  m_Direction: 0
 --- !u!50 &995131221
 Rigidbody2D:
   serializedVersion: 4
@@ -1043,6 +1011,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91640578aa2042eaac18d4b3ee8b2d38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &995131224
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995131216}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.6, y: 3}
+  serializedVersion: 2
+  m_Radius: 10
 --- !u!1 &1179368316
 GameObject:
   m_ObjectHideFlags: 0
@@ -1097,6 +1100,57 @@ Transform:
   - {fileID: 619394802}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1181446052
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1181446053}
+  - component: {fileID: 1181446054}
+  m_Layer: 0
+  m_Name: SnakeInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1181446053
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181446052}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 753748092}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1181446054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181446052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8893eb7fcc004369832a0cf39b71e570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snakeBodyPrefab: {fileID: 7531381347035575491, guid: abacbe70912329a4a85f95cf6c73534f, type: 3}
+  snakeTransform: {fileID: 995131218}
+  snakeConfig: {fileID: 995131219}
+  initialBodySize: 2
+  distanceBetweenParts: 10
+  distanceToFirstPart: 1
+  smoothSpeed: 10
 --- !u!1 &1398850448
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,6 +1193,50 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0841e3b93ec84af68048f93a30f7960f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1488393752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1488393753}
+  - component: {fileID: 1488393754}
+  m_Layer: 0
+  m_Name: SnakeBodySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1488393753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488393752}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 517258061}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1488393754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488393752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e16f03906942fd9399d0f4292e49bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1605268244

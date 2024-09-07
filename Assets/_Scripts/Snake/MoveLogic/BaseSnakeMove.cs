@@ -6,21 +6,21 @@ namespace _Scripts.Snake.MoveLogic
     {
         protected float MoveSpeed;
 
-        private static Transform _playerTransform;
-
         private static Vector2Int _gridPos;
 
         private static Vector2 _moveDirection;
 
         private readonly RotateSnake _rotateSnake;
 
+        private readonly SnakeConfig _context;
+
         private Vector3 _targetPosition;
 
-        protected BaseSnakeMove(Transform playerTransform)
+        protected BaseSnakeMove(SnakeConfig context)
         {
-            _playerTransform = playerTransform;
+            _context = context;
 
-            _rotateSnake = new RotateSnake(_playerTransform);
+            _rotateSnake = new RotateSnake(_context.SnakeTransform);
 
             SetStartPosition();
         }
@@ -54,14 +54,15 @@ namespace _Scripts.Snake.MoveLogic
         {
             var movement = new Vector3(_moveDirection.x, _moveDirection.y, 0) * MoveSpeed * Time.deltaTime;
 
-            _playerTransform.position += movement;
+            _context.SnakeBody.SetGridPos(_context.SnakeTransform.position);
+            _context.SnakeTransform.position += movement;
         }
 
         private void SetStartPosition()
         {
             _gridPos = new Vector2Int(0, 0);
             _targetPosition = new Vector3(_gridPos.x, _gridPos.y, 0);
-            _playerTransform.position = _targetPosition;
+            _context.SnakeTransform.position = _targetPosition;
         }
 
         private static Vector2 NormalizeDirection(Vector2 direction)

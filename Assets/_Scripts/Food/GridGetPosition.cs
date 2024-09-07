@@ -30,8 +30,6 @@ namespace _Scripts.Food
                 if (_tilemap.GetTile(position) == null) availablePositions.Add(position);
             }
 
-            Debug.Log($"Available positions count: {availablePositions.Count}");
-
             return availablePositions;
         }
     }

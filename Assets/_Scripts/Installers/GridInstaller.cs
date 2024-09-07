@@ -11,7 +11,6 @@ namespace _Scripts.Installers
         public override void InstallBindings()
         {
             Container.BindInstance(tilemap).AsTransient();
-            Debug.LogWarning("Binded " + tilemap);
         }
     }
 }
