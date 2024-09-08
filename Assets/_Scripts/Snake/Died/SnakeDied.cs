@@ -7,7 +7,7 @@ using Zenject;
 
 namespace _Scripts.Snake.Died
 {
-    public class SnakeDied : IInitializable, IDisposable
+    public class SnakeDied
     {
         private readonly BaseSnakeMove _snakeMove;
         private readonly DieUI _dieUI;
@@ -28,16 +28,6 @@ namespace _Scripts.Snake.Died
             _dieUI.ShowDieUI();
             _musicSwitcher.Switch(MusicCType.Defeat);
             _snakeBody.Reset();
-        }
-        
-        public void Initialize()
-        {
-            SnakeCollisionDetector.OnDied += Died;
-        }
-
-        public void Dispose()
-        {
-            SnakeCollisionDetector.OnDied -= Died;
         }
     }
 }

@@ -38,7 +38,7 @@ namespace _Scripts.Installers
             Container.Bind<BaseSnakeMove>().To<Walk>().FromInstance(snakeConfig.Walk).WithArguments(snakeConfig);
             Container.Bind<DieUI>().AsSingle();
             Container.Bind<MusicSwitcher>().FromComponentInHierarchy().AsSingle();
-            Container.BindInterfacesAndSelfTo<SnakeDied>().AsSingle();
+            Container.Bind<SnakeDied>().AsSingle();
         }
     }
 }
