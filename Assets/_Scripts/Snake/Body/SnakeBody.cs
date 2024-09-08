@@ -8,13 +8,14 @@ namespace _Scripts.Snake.Body
         private readonly MoveAndRotateBodyPart _moveAndRotateBodyPart;
         private readonly CreateSnakeBodyPart _createSnakeBodyPart;
         private readonly SnakeBodyPartConfig _snakeBodyPartConfig;
+        private readonly ResetBody _resetBody;
 
         public SnakeBody(SnakeBodyPartConfig snakeBodyPartConfig)
         {
             _snakeBodyPartConfig = snakeBodyPartConfig;
             _moveAndRotateBodyPart = new MoveAndRotateBodyPart(snakeBodyPartConfig);
             _createSnakeBodyPart = new CreateSnakeBodyPart(snakeBodyPartConfig);
-            _snakeBodyPartConfig = snakeBodyPartConfig;
+            _resetBody = new ResetBody(_snakeBodyPartConfig);
         }
 
         public void Tick()
@@ -30,6 +31,11 @@ namespace _Scripts.Snake.Body
         public void Create()
         {
             _createSnakeBodyPart.Create();
+        }
+        
+        public void Reset()
+        {
+            _resetBody.Reset();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace _Scripts.Snake.MoveLogic
 {
-    public abstract class BaseSnakeMove : IMove
+    public class BaseSnakeMove : IMove
     {
         protected float MoveSpeed;
 
@@ -15,6 +15,7 @@ namespace _Scripts.Snake.MoveLogic
         private readonly SnakeConfig _context;
 
         private Vector3 _targetPosition;
+        private static SnakeState _currentSnakeState;
 
         protected BaseSnakeMove(SnakeConfig context)
         {
@@ -22,20 +23,35 @@ namespace _Scripts.Snake.MoveLogic
 
             _rotateSnake = new RotateSnake(_context.SnakeTransform);
 
+            SetSnakeState(SnakeState.Alive);
+
             SetStartPosition();
         }
 
         public void Move(Vector2 direction)
         {
-            direction = NormalizeDirection(direction);
-
-            if (direction != Vector2.zero && _moveDirection != -direction)
+            if (_currentSnakeState == SnakeState.Alive)
             {
-                SetDirection(direction);
-                RotateSnake(direction);
+                direction = NormalizeDirection(direction);
+
+                if (direction != Vector2.zero && _moveDirection != -direction)
+                {
+                    SetDirection(direction);
+                    RotateSnake(direction);
+                }
+
+                MoveSnake();
             }
 
-            MoveSnake();
+            if (_currentSnakeState == SnakeState.Died)
+            {
+                _context.SnakeBody.SetGridPos(_context.SnakeTransform.position);
+            }
+        }
+
+        public void SetSnakeState(SnakeState currentSnakeState)
+        {
+            _currentSnakeState = currentSnakeState;
         }
 
         private void SetDirection(Vector2 direction)
@@ -54,8 +70,10 @@ namespace _Scripts.Snake.MoveLogic
         {
             var movement = new Vector3(_moveDirection.x, _moveDirection.y, 0) * MoveSpeed * Time.deltaTime;
 
-            _context.SnakeBody.SetGridPos(_context.SnakeTransform.position);
-            _context.SnakeTransform.position += movement;
+            var position = _context.SnakeTransform.position;
+            _context.SnakeBody.SetGridPos(position);
+            position += movement;
+            _context.SnakeTransform.position = position;
         }
 
         private void SetStartPosition()
@@ -69,5 +87,12 @@ namespace _Scripts.Snake.MoveLogic
         {
             return direction.magnitude > 0 ? direction.normalized : Vector2.zero;
         }
+    }
+
+    public enum SnakeState
+    {
+        None,
+        Alive,
+        Died
     }
 }

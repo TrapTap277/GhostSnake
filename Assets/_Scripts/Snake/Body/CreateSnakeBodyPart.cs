@@ -16,15 +16,9 @@ namespace _Scripts.Snake.Body
 
         public void Create()
         {
-            for (var i = 0; i < _snakeBodyPartConfig.BodySize * 10; i++)
-            {
-                SetAndAddDefaultPosition(i);
-            }
+            for (var i = 0; i < _snakeBodyPartConfig.BodySize * 10; i++) SetAndAddDefaultPosition(i);
 
-            for (var i = 0; i < _snakeBodyPartConfig.BodySize; i++)
-            {
-                CreateBodyPart(i);
-            }
+            for (var i = 0; i < _snakeBodyPartConfig.BodySize; i++) CreateBodyPart(i);
         }
 
         private void AddNewPart()
@@ -35,25 +29,23 @@ namespace _Scripts.Snake.Body
 
             if (_snakeBodyPartConfig.SnakeMovePositionList.Count > 0)
             {
-                Vector2 lastPartPosition = _snakeBodyPartConfig.SnakeMovePositionList[^1];
-                newPartPosition = lastPartPosition - new Vector2(0, _snakeBodyPartConfig.DistanceBetweenParts);
+                var lastPartPosition = _snakeBodyPartConfig.SnakeMovePositionList[^1];
+                newPartPosition = lastPartPosition - new Vector2(-(_snakeBodyPartConfig.GridPos.x + 50), -(_snakeBodyPartConfig.GridPos.y + 50));
             }
             else
             {
-                newPartPosition = new Vector2(10, 10); 
+                newPartPosition = new Vector2(-(_snakeBodyPartConfig.GridPos.x + 50), -(_snakeBodyPartConfig.GridPos.y + 50));
             }
 
             _snakeBodyPartConfig.SnakeMovePositionList.Add(newPartPosition);
 
-            CreateBodyPart(_snakeBodyPartConfig.SnakeBodyParts.Count); 
+            CreateBodyPart(_snakeBodyPartConfig.SnakeBodyParts.Count);
         }
 
         private void CreateBodyPart(int i)
         {
-            var snakeMovePos =
-                _snakeBodyPartConfig
-                    .SnakeMovePositionList[i]; 
-            var position = new Vector3(snakeMovePos.x, snakeMovePos.y, 0);
+            var snakeMovePos = _snakeBodyPartConfig.SnakeMovePositionList[i];
+            var position = new Vector3(snakeMovePos.x, -50, 0);
             var snakeBodyPart = Object.Instantiate(_snakeBodyPartConfig.SnakeBodyPrefab, position, Quaternion.identity);
             snakeBodyPart.name = "SnakeBody_" + i;
             _snakeBodyPartConfig.SnakeBodyParts.Add(snakeBodyPart);
