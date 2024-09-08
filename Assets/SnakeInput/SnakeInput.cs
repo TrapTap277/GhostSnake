@@ -57,7 +57,7 @@ public partial class @SnakeInput: IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""Movement"",
+                    ""name"": ""Buttons"",
                     ""id"": ""d3cc7df7-4029-458b-83fb-6625a3df35ab"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
@@ -220,6 +220,17 @@ public partial class @SnakeInput: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27e2c534-6051-4519-8811-c6b2aad96e40"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
