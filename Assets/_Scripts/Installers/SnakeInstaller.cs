@@ -36,7 +36,6 @@ namespace _Scripts.Installers
             // Snake died
 
             Container.Bind<BaseSnakeMove>().To<Walk>().FromInstance(snakeConfig.Walk).WithArguments(snakeConfig);
-            Container.Bind<DieUI>().AsSingle();
             Container.Bind<MusicSwitcher>().FromComponentInHierarchy().AsSingle();
             Container.Bind<SnakeDied>().AsSingle();
         }
