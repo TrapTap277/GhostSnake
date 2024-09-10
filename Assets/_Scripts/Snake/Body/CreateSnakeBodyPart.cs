@@ -1,4 +1,5 @@
 ﻿using System;
+using _Scripts.Snake.MoveLogic;
 using UnityEngine;
 using Zenject;
 using Object = UnityEngine.Object;
@@ -8,6 +9,8 @@ namespace _Scripts.Snake.Body
     public class CreateSnakeBodyPart : IInitializable, IDisposable
     {
         private readonly SnakeBodyPartConfig _snakeBodyPartConfig;
+
+        private Vector2 _defaultPos;
 
         public CreateSnakeBodyPart(SnakeBodyPartConfig snakeBodyPartConfig)
         {
@@ -23,41 +26,37 @@ namespace _Scripts.Snake.Body
 
         private void AddNewPart()
         {
-            Debug.LogWarning("Created new");
-
-            Vector2 newPartPosition;
+            var snakeConfig = Object.FindObjectOfType<SnakeConfig>();
 
             if (_snakeBodyPartConfig.SnakeMovePositionList.Count > 0)
             {
-                var lastPartPosition = _snakeBodyPartConfig.SnakeMovePositionList[^1];
-                newPartPosition = lastPartPosition - new Vector2(-(_snakeBodyPartConfig.GridPos.x + 50), -(_snakeBodyPartConfig.GridPos.y + 50));
+                var lastPartPosition = snakeConfig.SnakeTransform;
+                _defaultPos = -lastPartPosition.transform.position;
             }
             else
             {
-                newPartPosition = new Vector2(-(_snakeBodyPartConfig.GridPos.x + 50), -(_snakeBodyPartConfig.GridPos.y + 50));
+                _defaultPos = new Vector2(10, 10);
             }
 
-            _snakeBodyPartConfig.SnakeMovePositionList.Add(newPartPosition);
-
+            _snakeBodyPartConfig.SnakeMovePositionList.Add(_defaultPos);
             CreateBodyPart(_snakeBodyPartConfig.SnakeBodyParts.Count);
         }
 
         private void CreateBodyPart(int i)
         {
-            var snakeMovePos = _snakeBodyPartConfig.SnakeMovePositionList[i];
-            var position = new Vector3(snakeMovePos.x, -50, 0);
-            var snakeBodyPart = Object.Instantiate(_snakeBodyPartConfig.SnakeBodyPrefab, position, Quaternion.identity);
+            var snakeBodyPart =
+                Object.Instantiate(_snakeBodyPartConfig.SnakeBodyPrefab, _defaultPos, Quaternion.identity);
             snakeBodyPart.name = "SnakeBody_" + i;
             _snakeBodyPartConfig.SnakeBodyParts.Add(snakeBodyPart);
         }
 
         private void SetAndAddDefaultPosition(int i)
         {
-            var defaultPos = new Vector2(10,
+            _defaultPos = new Vector2(10,
                 10 - (i == 0
                     ? _snakeBodyPartConfig.DistanceToFirstPart
                     : i * _snakeBodyPartConfig.DistanceBetweenParts));
-            _snakeBodyPartConfig.SnakeMovePositionList.Add(defaultPos);
+            _snakeBodyPartConfig.SnakeMovePositionList.Add(_defaultPos);
         }
 
         public void Initialize()

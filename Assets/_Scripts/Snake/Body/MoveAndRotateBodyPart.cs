@@ -21,6 +21,7 @@ namespace _Scripts.Snake.Body
 
             for (var i = 0; i < _snakeBodyPartConfig.SnakeBodyParts.Count; i++)
             {
+                if (_snakeBodyPartConfig.SnakeBodyParts[i] == null) continue;
                 var targetPosition = DeterminateMove(i, headPosition);
 
                 MoveBodyPartWithLerp(i, targetPosition);
@@ -35,9 +36,10 @@ namespace _Scripts.Snake.Body
 
         private void MoveBodyPartWithLerp(int i, Vector3 targetPosition)
         {
+            var time = Time.deltaTime * _snakeBodyPartConfig.SmoothSpeed;
+
             _snakeBodyPartConfig.SnakeBodyParts[i].transform.position = Vector3.Lerp(
-                _snakeBodyPartConfig.SnakeBodyParts[i].transform.position, targetPosition,
-                Time.deltaTime * _snakeBodyPartConfig.SmoothSpeed);
+                _snakeBodyPartConfig.SnakeBodyParts[i].transform.position, targetPosition, time);
         }
 
         private Vector3 DeterminateMove(int i, Vector3 headPosition)
