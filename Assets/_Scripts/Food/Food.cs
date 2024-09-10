@@ -5,9 +5,9 @@ namespace _Scripts.Food
 {
     public class Food : MonoBehaviour
     {
-        private static readonly int IsEaten = Animator.StringToHash("IsEaten");
-
         public static event Action OnDied;
+
+        private static readonly int IsEaten = Animator.StringToHash("IsEaten");
 
         private Animator _animator;
 
@@ -21,14 +21,14 @@ namespace _Scripts.Food
             _animator.SetBool(IsEaten, true);
         }
 
+        public void OnCreatedNewSnakeBody()
+        {
+            OnDied?.Invoke();
+        }
+
         public void DestroyFood()
         {
             Destroy(gameObject);
-        }
-
-        private void OnDestroy()
-        {
-            OnDied?.Invoke();
         }
     }
 }

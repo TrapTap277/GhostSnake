@@ -18,13 +18,13 @@ namespace _Scripts.Food
 
         private readonly GridGetPosition _gridGetPosition;
 
-        public FoodSpawner([Inject(Id = "Food")]GameObject food, Tilemap tileMap)
+        public FoodSpawner([Inject(Id = "Food")] GameObject food, Tilemap tileMap)
         {
             _food = food;
             _tileMap = tileMap;
 
             _gridGetPosition = new GridGetPosition(tileMap);
-            
+
             _numberOfObjectsToSpawn = 1;
         }
 
