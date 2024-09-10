@@ -268,7 +268,7 @@ public partial class @SnakeInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""496e6feb-f364-4d89-a5d6-a50221a8a833"",
-                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""path"": ""<Gamepad>/dpad/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
