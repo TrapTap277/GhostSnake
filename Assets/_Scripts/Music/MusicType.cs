@@ -1,6 +1,6 @@
 ﻿namespace _Scripts.Music
 {
-    public enum MusicCType
+    public enum MusicType
     {
         Theme,
         Victory,

@@ -5,39 +5,72 @@ namespace _Scripts.Music
 {
     public class MusicSwitcher : MonoBehaviour
     {
-        [SerializeField] private AudioSource _source;
+        [SerializeField] private AudioSource source;
 
-        [SerializeField] private AudioClip _currentAudioClip;
+        [SerializeField] private AudioClip themeClip;
+        [SerializeField] private AudioClip victoryClip;
+        [SerializeField] private AudioClip defeatClip;
 
-        [SerializeField] private AudioClip _themeClip;
-        [SerializeField] private AudioClip _victoryClip;
-        [SerializeField] private AudioClip _defeatClip;
+        private AudioClip _currentAudioClip;
 
         private void Start()
         {
-            Switch(MusicCType.Theme);
+            SetCurrentClip(MusicType.Theme);
+            Switch();
+            SetCurrentClip(MusicType.Defeat);
         }
 
-        public void Switch(MusicCType musicType)
+        public void Switch()
         {
-            
-            Debug.LogWarning("Playing music");
-            SetCurrentClip(musicType);
+            if (source.isPlaying) Stop();
 
-            _source.Stop();
-            _source.PlayOneShot(_currentAudioClip);
-            
+            Play();
         }
 
-        private void SetCurrentClip(MusicCType musicType)
+        private void Play()
         {
-            _currentAudioClip = musicType switch
+            source.PlayOneShot(_currentAudioClip);
+        }
+
+        private void Stop()
+        {
+            source.Stop();
+        }
+
+        private void SetCurrentClip(MusicType musicType)
+        {
+            switch (musicType)
             {
-                MusicCType.Theme => _themeClip,
-                MusicCType.Victory => _victoryClip,
-                MusicCType.Defeat => _defeatClip,
-                _ => throw new ArgumentOutOfRangeException(nameof(musicType), musicType, null)
-            };
+                case MusicType.Theme:
+                    ChangeLoop(true);
+                    _currentAudioClip = themeClip;
+                    break;
+                case MusicType.Victory:
+                    ChangeLoop(false);
+                    _currentAudioClip = victoryClip;
+                    break;
+                case MusicType.Defeat:
+                    ChangeLoop(false);
+                    _currentAudioClip = defeatClip;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(musicType), musicType, null);
+            }
+        }
+
+        private void ChangeLoop(bool change)
+        {
+            source.loop = change;
+        }
+
+        private void OnEnable()
+        {
+            ScoreCounter.ScoreCounter.OnSetMusicType += SetCurrentClip;
+        }
+
+        private void OnDisable()
+        {
+            ScoreCounter.ScoreCounter.OnSetMusicType -= SetCurrentClip;
         }
     }
 }
