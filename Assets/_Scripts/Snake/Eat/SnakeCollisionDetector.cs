@@ -1,5 +1,4 @@
 ﻿using System;
-using _Scripts.Snake.Died;
 using UnityEngine;
 using Zenject;
 
@@ -7,26 +6,27 @@ namespace _Scripts.Snake.Eat
 {
     public class SnakeCollisionDetector : MonoBehaviour
     {
+        public static event Action OnSnakeDied;
+
         private const string OBSTACLE = "Obstacle";
 
-        private SnakeDied _snakeDied;
+        private ScoreCounter.ScoreCounter _scoreCounter;
 
         [Inject]
-        private void Construct(SnakeDied snakeDied)
+        private void Construct(ScoreCounter.ScoreCounter scoreCounter)
         {
-            _snakeDied = snakeDied; 
+            _scoreCounter = scoreCounter;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.GetComponent<Food.Food>() != null)
-                other.gameObject.GetComponent<Food.Food>().PlayAnimationAndDestroy();
-
-            if (other.CompareTag(OBSTACLE))
             {
-                _snakeDied.Died();
-                Debug.LogWarning("Game over!");
+                other.gameObject.GetComponent<Food.Food>().PlayAnimationAndDestroy();
+                _scoreCounter.AddScore();
             }
+
+            if (other.CompareTag(OBSTACLE)) OnSnakeDied?.Invoke();
         }
     }
 }

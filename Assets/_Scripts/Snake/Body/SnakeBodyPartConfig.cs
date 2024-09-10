@@ -19,7 +19,8 @@ namespace _Scripts.Snake.Body
 
         public SnakeBodyPartConfig([Inject(Id = "BodySize")] int bodySize,
             [Inject(Id = "SnakeBody")] GameObject snakeBodyPrefab,
-            [Inject(Id = "DistanceBetweenParts")] float distanceBetweenParts, [Inject(Id = "DistanceToFirstPart")] float distanceToFirstPart,
+            [Inject(Id = "DistanceBetweenParts")] float distanceBetweenParts,
+            [Inject(Id = "DistanceToFirstPart")] float distanceToFirstPart,
             [Inject(Id = "SmoothSpeed")] float smoothSpeed)
         {
             BodySize = bodySize;

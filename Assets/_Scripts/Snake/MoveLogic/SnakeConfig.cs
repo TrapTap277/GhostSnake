@@ -13,30 +13,16 @@ namespace _Scripts.Snake.MoveLogic
         public const string MOVE_ID = "Move";
         public const string RUN_ID = "Run";
 
-        public Shifting Shifting;
-        public Walk Walk;
-        public Run Run;
-
-        private GameObject _snakeBodyPrefab;
-
         [Inject]
         private void Construct(SnakeBody snakeBody)
         {
             SnakeBody = snakeBody;
+            InitializeComponents();
         }
 
-        public void InitMoveBehaviours()
+        private void InitializeComponents()
         {
-            GetTransform();
-
-            Shifting = new Shifting(this);
-            Run = new Run(this);
-            Walk = new Walk(this);
-        }
-
-        private void GetTransform()
-        {
-            SnakeTransform = gameObject.GetComponent<Transform>();
+            SnakeTransform = GetComponent<Transform>();
         }
     }
 }

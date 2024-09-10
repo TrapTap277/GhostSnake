@@ -14,11 +14,13 @@ namespace _Scripts.Snake.MoveLogic
 
         private readonly SnakeConfig _context;
 
-        private Vector3 _targetPosition;
         private static SnakeState _currentSnakeState;
+
+        private Vector3 _targetPosition;
 
         protected BaseSnakeMove(SnakeConfig context)
         {
+            _moveDirection = Vector2.zero;
             _context = context;
 
             _rotateSnake = new RotateSnake(_context.SnakeTransform);
@@ -43,10 +45,7 @@ namespace _Scripts.Snake.MoveLogic
                 MoveSnake();
             }
 
-            if (_currentSnakeState == SnakeState.Died)
-            {
-                _context.SnakeBody.SetGridPos(_context.SnakeTransform.position);
-            }
+            if (_currentSnakeState == SnakeState.Died) _context.SnakeBody.SetGridPos(_context.SnakeTransform.position);
         }
 
         public void SetSnakeState(SnakeState currentSnakeState)

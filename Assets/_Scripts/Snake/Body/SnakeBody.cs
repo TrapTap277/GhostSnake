@@ -32,7 +32,7 @@ namespace _Scripts.Snake.Body
         {
             _createSnakeBodyPart.Create();
         }
-        
+
         public void Reset()
         {
             _resetBody.Reset();
