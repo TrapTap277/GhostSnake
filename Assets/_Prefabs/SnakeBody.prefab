@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1151555425205117022}
   - component: {fileID: 7995778295725892221}
   - component: {fileID: 142339481646691097}
+  - component: {fileID: -5532189651287218221}
   m_Layer: 0
   m_Name: SnakeBody
   m_TagString: Obstacle
@@ -148,3 +149,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &-5532189651287218221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7531381347035575491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 896772b3119d4bcbbbf80b27a93f1ed1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
