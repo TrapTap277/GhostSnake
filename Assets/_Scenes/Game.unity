@@ -4477,9 +4477,9 @@ MonoBehaviour:
   snakeBodyPrefab: {fileID: 7531381347035575491, guid: abacbe70912329a4a85f95cf6c73534f, type: 3}
   snakeTransform: {fileID: 737223880237887569, guid: 827167714c86f284b84faa76f802f61a, type: 3}
   initialBodySize: 2
-  distanceBetweenParts: 5
+  distanceBetweenParts: 15
   distanceToFirstPart: 15
-  smoothSpeed: 10
+  smoothSpeed: 100
 --- !u!1 &1219652205
 GameObject:
   m_ObjectHideFlags: 0
