@@ -11,10 +11,7 @@ namespace _Scripts.Snake.Body
         private void Awake()
         {
             _collider2D = GetComponent<CircleCollider2D>();
-        }
-
-        private void Start()
-        {
+            
             if (gameObject.CompareTag("Obstacle"))
             {
                 SetActive(false);
