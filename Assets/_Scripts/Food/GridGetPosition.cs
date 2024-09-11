@@ -15,7 +15,7 @@ namespace _Scripts.Food
         {
             _tilemap = tilemap;
 
-            _spawnAreaMin = new Vector2Int(-11, -6);
+            _spawnAreaMin = new Vector2Int(-10, -5);
             _spawnAreaMax = new Vector2Int(10, 5);
         }
 
